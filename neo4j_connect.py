@@ -1,6 +1,6 @@
 from py2neo import Graph, Subgraph, Node, Relationship, Path, NodeMatcher
 
-graph = Graph('bolt://10.211.55.3:7474', auth=('neo4j', 'xiaoqian666'))  # neo4j数据库连接
+graph = Graph('http://10.211.55.3:7474', auth=('neo4j', 'xiaoqian666'))  # neo4j数据库连接
 matcher = NodeMatcher(graph)
 
 ''' 增 '''
