@@ -16,9 +16,7 @@ def get_new_csv(path):
 
 
 csv_file = get_new_csv('medicineTable.csv')  # 返回 csv文件对象
-csv_file2 = get_new_csv('neo4jTable.csv')  # 返回 neo4j的 csv文件对象
 csv_write = csv.writer(csv_file)  # 返回 csv_file写入器对象
-csv_write2 = csv.writer(csv_file2)  # 返回 csv_file2的写入器对象
 
 # 先写下csv文件的第一行
 first_row = ['中药名', '别名', '英文名', '药用部位',
@@ -131,7 +129,6 @@ for page in range(1, 3):
 
 insert_values(con, value_list)  # 将数据写入mysql数据库
 csv_file.close()  # 关闭连接
-csv_file2.close()  # 关闭连接
 connect_close(con)  # 关闭连接
 
 ''' 导入 neo4j节点 '''
