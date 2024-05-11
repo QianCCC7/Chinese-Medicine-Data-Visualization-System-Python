@@ -39,7 +39,7 @@ def getByURL(url):
     res.encoding = 'GBK'
     soup = BeautifulSoup(res.text, 'lxml')
 
-    name = soup.find('div', {'class': 'title'}).find('h1').get_text().strip()  # 药名
+    # name = soup.find('div', {'class': 'title'}).find('h1').get_text().strip()  # 药名
     # medicine_info.update({'Name': name})  # 将药名添加到 medicine_info字典中
 
     info_list = soup.find('div', {'class': 'gaishu'}).find('div', {'class': 'text'})  # 药品的所有概述
@@ -92,6 +92,7 @@ def getByURL(url):
             # print('Error!', e)
             continue
 
+        # 确保药品属性为完整属性名
         find = False
         for key in title_mappings.keys():
             if key in title:

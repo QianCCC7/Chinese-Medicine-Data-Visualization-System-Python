@@ -45,7 +45,7 @@ provinces = set()
 # 关系
 relation = dict()
 
-for page in range(1, 3):
+for page in range(1, 2):
     data = []  # 每一页的数据
     page_url = 'http://www.zhongyoo.com/name/page_' + str(page) + '.html'
     res = requests.get(page_url, headers=headers)
