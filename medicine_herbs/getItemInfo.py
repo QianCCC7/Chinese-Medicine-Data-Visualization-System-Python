@@ -38,8 +38,6 @@ def getByURL(url):
         title = basic_info.find('strong').get_text().strip()  # 每条概述的标题
         text = basic_info.get_text().strip().replace('\t', '').replace(title, '')  # 每条概述标题对应的详细信息(除去了该概述的标题)
         text = ''.join(text.splitlines())
-        if title == '分类':
-            print(title, text)
         medicine_herbs_info.update({title: text})  # 更新药材属性信息
     # 药材更多信息
     more_info_list = (soup.find('div', {'class': 'px-5'})
