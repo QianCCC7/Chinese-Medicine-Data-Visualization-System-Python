@@ -19,8 +19,9 @@ def getByURL(url):
     soup = BeautifulSoup(res.text, 'lxml')
     img_url = soup.find('div', {'id': 'solutionmod-pic-section'}).find('img').get('src')  # 获取方剂的图片路径
     prescription_info.update({'图片路径': img_url})
-    info_list = soup.find('div', {'class', 'px-5'}).find('div', {'class': 'small'}).find_all('div', {
-        'class': ['border-bottom', 'border-light', 'py-3']})
+    info_list = (soup.find('div', {'class', 'px-5'})
+                 .find('div', {'class': 'small'})
+                 .find_all('div', {'class': ['border-bottom', 'border-light', 'py-3']}))
     for info in info_list:
         try:
             title = info.find('strong').get_text().strip()  # 每条概述的标题
