@@ -51,12 +51,9 @@ for page in range(1, 2):
         cur_db_data = []
         for key in medicine_herbs_info.keys():
             if d.get(key) is None or d.get(key) == '':
-                # print(key, '暂无数据')
                 cur_db_data.append('暂无数据')
             else:
-                # print(key, d.get(key))
                 cur_db_data.append(d.get(key))
-                print(len(cur_db_data))
         print("=========================")
         db_data.append(cur_db_data)  # 写入数据库数据列表，方便数据批量插入数据库
 
