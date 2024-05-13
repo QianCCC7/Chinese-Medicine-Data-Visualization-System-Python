@@ -20,13 +20,18 @@ def get_new_csv(path):
 
 # csv_file = get_new_csv('medicine_herbs.csv')  # 返回 csv文件对象
 # csv_write = csv.writer(csv_file)  # 返回 csv_file写入器对象
+medicine_herbs_csv = get_new_csv('medicine_herbs_name.csv')  # 记录所有药材名的 csv文件对象
+medicine_herbs_csv_writer = csv.writer(medicine_herbs_csv)
 
 # 数据库数据处理
 db_connect = connect()
 create_table(db_connect)
 db_data = []
 
-for page in range(1, 2):
+# 将药材名写入 csv文件，csv_medicine_herbs_data的每个元素为列表即[medicine_herbs_name]
+csv_medicine_herbs_data = []
+
+for page in range(1, 22):
     data = []  # 每一页的数据
 
     page_url = 'https://www.zhongyifangji.com/materials/index/p/' + str(page)
@@ -54,8 +59,14 @@ for page in range(1, 2):
                 cur_db_data.append('暂无数据')
             else:
                 cur_db_data.append(d.get(key))
+                if key == '名称':
+                    csv_medicine_herbs_data.append([d.get(key)])
         print("=========================")
         db_data.append(cur_db_data)  # 写入数据库数据列表，方便数据批量插入数据库
 
 insert_values(db_connect, db_data)  # 数据库批量写入数据
 connect_close(db_connect)
+
+# 将药名批量写入 csv文件
+medicine_herbs_csv_writer.writerows(csv_medicine_herbs_data)
+medicine_herbs_csv.close()

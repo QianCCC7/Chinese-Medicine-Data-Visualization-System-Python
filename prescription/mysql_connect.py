@@ -29,7 +29,7 @@ def create_table(con):
                     "note text comment '附注', "
                     "source text comment '出处', "
                     "url varchar(255) comment '图片路径',"
-                    "herbs text comment '药材组成')")
+                    "herbs text comment '组成方剂的药材id集合')")
         print("创建数据库->执行成功")
     except Exception as err:
         print('创建数据库->执行失败', err)
