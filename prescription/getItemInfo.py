@@ -26,7 +26,7 @@ def getByURL(url):
     headers = {
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0'
     }
-    add_custom_words_from_csv('../medicine_herbs/medicine_herbs_name.csv')
+    add_custom_words_from_csv('../medicine_herbs/medicine_herbs_name.csv')  # 初始化jieba库等操作
 
     res = requests.get(url, headers=headers)
     res.encoding = 'utf-8'

@@ -11,6 +11,7 @@ headers = {
 medicine_herbs_info = {'名称': '', '拼音': '', '英文名': '', '拉丁名': '',
                        '分类': '', '产地': '', '性状': '', '品质': '',
                        '性味': '', '功效': '', '来源': '', '图片路径': '',
+                       '炙品': '',
                        }
 
 
@@ -32,6 +33,7 @@ db_data = []
 csv_medicine_herbs_data = []
 
 for page in range(1, 22):
+    print('当前为第' + str(page) + '页')
     data = []  # 每一页的数据
 
     page_url = 'https://www.zhongyifangji.com/materials/index/p/' + str(page)
@@ -61,7 +63,6 @@ for page in range(1, 22):
                 cur_db_data.append(d.get(key))
                 if key == '名称':
                     csv_medicine_herbs_data.append([d.get(key)])
-        print("=========================")
         db_data.append(cur_db_data)  # 写入数据库数据列表，方便数据批量插入数据库
 
 insert_values(db_connect, db_data)  # 数据库批量写入数据

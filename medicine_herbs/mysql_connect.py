@@ -26,7 +26,8 @@ def create_table(con):
                     "flavor varchar(255) comment '性味', "
                     "benefits text comment '功效', "
                     "source text comment '来源', "
-                    "url varchar(255) comment '图片路径')")
+                    "url varchar(255) comment '图片路径',"
+                    "roasted_food text comment '炙品')")
         print("创建数据库->执行成功")
     except Exception as err:
         print('创建数据库->执行失败', err)
@@ -36,8 +37,8 @@ def insert_values(con, values):
     try:
         cur = con.cursor()
         sql = ("insert into medicine_herbs "
-               "(name, pinyin, english_name, latin_name, category, provinces, nature, quality, flavor, benefits, source, url)"
-               "values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+               "(name, pinyin, english_name, latin_name, category, provinces, nature, quality, flavor, benefits, source, url, roasted_food)"
+               "values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         cur.executemany(sql, values)   # 批量写入数据
         con.commit()  # 提交
         print("插入数据->执行成功")

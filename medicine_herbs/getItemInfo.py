@@ -7,6 +7,7 @@ def getByURL(url):
     medicine_herbs_info = {'名称': '', '拼音': '', '英文名': '', '拉丁名': '',
                            '分类': '', '产地': '', '性状': '', '品质': '',
                            '性味': '', '功效': '', '来源': '', '图片路径': '',
+                           '炙品': '',
                            }
 
     provinces = {
@@ -47,6 +48,7 @@ def getByURL(url):
         title = more_info.find('strong').get_text().strip()  # 每条概述的标题
         text = more_info.get_text().strip().replace(title, '')  # 每条概述标题对应的详细信息(除去了该概述的标题)
 
+        # 标题为性味时，为每个值加上一个味字
         if title == '性味':
             xw = jieba.lcut(text)
             new_xw = []
