@@ -20,7 +20,7 @@ def getByURL(url):
     prescription_info = {'名称': '', '拼音': '', '分类': '', '组成': '',
                          '用法': '', '功用': '', '主治': '', '病机': '',
                          '运用': '', '附方': '', '方歌': '', '附注': '',
-                         '出处': '', '图片路径': '', '药材': ''
+                         '出处': '', '图片路径': '', '药材': '', '药材名': '',
                          }
     url = url
     headers = {
@@ -42,12 +42,15 @@ def getByURL(url):
             text = info.get_text().strip().replace(title, '')  # 每条概述标题对应的详细信息(除去了该概述的标题)
             if title == '组成':
                 ts = jieba.lcut(text)
-                yc_id_db = []  # 该方剂的组成药材的 id
+                yc_id_db = []  # 该方剂的组成药材的 id，用于存入 mysql
+                yc_names = []  # 该方剂的组成药材的 name集合,用于 neo4j创建节点关系
                 for d in ts:
                     if d in medicine_herbs_names:  # 如果该分词出来的词语在 medicine_herbs_names中，才新增数据，用于确定该方剂由哪些药材组成
                         yc_id_db.append(str(medicine_herbs_map.get(d)))  # 存入组成方剂的药材的 id
+                        yc_names.append(d)
                 yc_db_text = ','.join(yc_id_db)
-                prescription_info.update({'药材': yc_db_text})  # 更新方剂的药材组成
+                prescription_info.update({'药材': yc_db_text})  # 更新方剂的药材组成(id)
+                prescription_info.update({'药材名': yc_names})  # 更新方剂的药材组成(名称)
 
             prescription_info.update({title: text})  # 更新方剂属性信息
 
