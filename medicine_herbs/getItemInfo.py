@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import jieba
+import re
 
 
 def getByURL(url):
@@ -50,11 +51,20 @@ def getByURL(url):
 
         # 标题为性味时，为每个值加上一个味字
         if title == '性味':
-            xw = jieba.lcut(text)
+            text = (text.replace("。", "，")
+                    .replace("味", "，")
+                    .replace("苦杏仁：", "")
+                    .replace("甜杏仁：", "")
+                    .replace("鲜地黄：", "")
+                    .replace("生地黄：", "")
+                    .replace("熟地黄：", ""))
+            xw = re.split(r'[，、；]', text)  # 根据顿号或者逗号分词
             new_xw = []
             for d in xw:
-                new_xw.append('味' + d)
+                if len(d) > 0:
+                    new_xw.append('味' + d)
             text = ','.join(new_xw)
+
 
         if title == '产地':
             cd = jieba.lcut(text)
