@@ -13,7 +13,8 @@ def create_table(con):
     try:
         cur = con.cursor()
         cur.execute("drop table if exists medicine_herbs")
-        cur.execute("CREATE TABLE medicine_herbs ("
+        cur.execute("CREATE TABLE medicine_herbs "
+                    "("
                     "id int AUTO_INCREMENT primary key comment 'id',"
                     "name varchar(255) comment '名称', "
                     "pinyin varchar(255) comment '拼音', "
@@ -26,8 +27,12 @@ def create_table(con):
                     "flavor varchar(255) comment '性味', "
                     "benefits text comment '功效', "
                     "source text comment '来源', "
-                    "url varchar(255) comment '图片路径',"
-                    "roasted_food text comment '炙品')")
+                    "url varchar(255) comment '图片路径', "
+                    "roasted_food text comment '炙品', "
+                    "create_date timestamp default CURRENT_TIMESTAMP comment '创建时间', "
+                    "update_date timestamp default CURRENT_TIMESTAMP comment '修改时间'"
+                    ")"
+                    )
         print("创建数据库->执行成功")
     except Exception as err:
         print('创建数据库->执行失败', err)

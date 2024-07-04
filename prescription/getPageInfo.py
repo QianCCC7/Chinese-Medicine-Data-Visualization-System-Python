@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import time
 import getItemInfo
 from mysql_connect import connect, create_table, insert_values, connect_close
-from medicine.neo4j_connect import get_graph, get_matcher, create_node, delete_nodes_by_label, create_relation_by_name, delete_all_relations
+from neo4j_connect import get_graph, get_matcher, create_node, delete_nodes_by_label, create_relation_by_name, delete_all_relations
 
 headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0'
