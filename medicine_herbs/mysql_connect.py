@@ -3,7 +3,7 @@ import pymysql
 
 # 连接数据库
 def connect():
-    conn = pymysql.connect(host='localhost', user='root', password='xiaoqian666', db='pcrp', port=3306)
+    conn = pymysql.connect(host='localhost', user='root', password='xiaoqian666', db='cmd_vs', port=3306)
     print("数据库连接成功-->")
     return conn
 
